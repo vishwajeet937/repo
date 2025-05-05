@@ -1,0 +1,5 @@
+on:
+  push:
+    branches:
+      - master  # This means the workflow will only trigger on push to the 'master' branch.
+
