@@ -1,0 +1,30 @@
+pipeline 
+{
+    agent any
+    stages 
+    {
+        stage('Clone Repository') 
+        {
+            steps 
+            {
+                git url: 'https://github.com/vishwajeet937/repo.git'
+            }
+        }
+        stage('Install Dependencies')
+        {
+          steps 
+          {
+               sh 'python3 -m pip install -r requirements.txt'
+          }
+        }
+
+        stage('Run App') 
+        {
+            steps
+            {
+                sh 'pkill -f "flask run" || true'
+                sh 'nohup python3 app.py &'
+            }
+        }
+    }
+}
